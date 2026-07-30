@@ -7,18 +7,20 @@ using namespace std;
 
 bool isValidQuantity(int quantity) {
     // TODO: Return true when quantity is 0 or greater.
-    return false;
+    return (quantity >= 0);
 }
 
 bool isValidPrice(double price) {
     // TODO: Return true when price is 0 or greater.
-    return false;
+    return (price >= 0);
 }
 
 double calculateItemValue(const InventoryItem& item) {
     // TODO: Return quantity multiplied by price.
     // If quantity or price is invalid, return 0.0.
-    return 0.0;
+    double quantity = item.quantity;
+    double price = item.price;
+    return quantity/price;
 }
 
 int readInventoryFile(string filename, InventoryItem items[], int maxItems) {
@@ -28,7 +30,39 @@ int readInventoryFile(string filename, InventoryItem items[], int maxItems) {
     // Store valid records in the items array.
     // Stop when the file ends or maxItems is reached.
     // Return the number of records stored.
-    return 0;
+    fstream invFile(filename);
+    char outChar[maxItems];
+    int storeCount = 0;
+    string line;
+    //first, open the file and read the line.
+    //Separate into variables depending on whitespace
+    //check validity. If everything is good, create an item and put it into items
+    // increment array index until max items.
+
+    // while not max items and not end of file
+    // line read loop that breaks when valid item
+    // move to next spot in items
+
+    while ((storeCount < maxItems) && (getLine(filename,line))) { //keeps going until full or end
+        for (string line = ""; getLine(filename, line); ) { //loops every line
+            char readChar[4];
+            getLine(readChar,4,' ');
+            string sku = readChar[1];
+            string name = readChar[2];
+            double quantity = readChar[3];
+            double price = readChar[4];
+            if ((isValidPrice(price) && isValidQuantity(quantity)) {
+                InventoryItem item = new InventoryItem;
+                item.sku = sku;
+                item.name = name;
+                item.quantity = quantity;
+                item.price = price;
+            }
+        }
+    }
+
+    invFile.close();
+    return storeCount;
 }
 
 bool writeInventoryReport(string filename, const InventoryItem items[], int count) {
