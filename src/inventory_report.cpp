@@ -112,8 +112,8 @@ bool writeInventoryReport(string filename, const InventoryItem items[], int coun
         return false;
     }
     
-    out << "Inventory Report" << end1;
-    out << "SKU Name Quantity Price Value" << end1;
+    out << "Inventory Report" << endl;
+    out << "SKU Name Quantity Price Value" << endl;
 
     for (int i = 0; i < count; i++) {
         out << items[i].sku << " "
@@ -121,11 +121,11 @@ bool writeInventoryReport(string filename, const InventoryItem items[], int coun
             <<items[i].quantity << " "
             << items[i].price << " "
             << calculateItemValue(items[i])
-            << end1;
+            << endl;
     }
     out << "Total Inventory Value: "
         << calculateTotalInventoryValue(items, count)
-        << end1;
+        << endl;
     out.close();
 
     return true;
