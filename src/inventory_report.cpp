@@ -123,7 +123,7 @@ bool writeInventoryReport(string filename, const InventoryItem items[], int coun
             << calculateItemValue(items[i])
             << endl;
     }
-    out << "Total Inventory Value: "
+    out << "Total inventory value"
         << calculateTotalInventoryValue(items, count)
         << endl;
     out.close();
